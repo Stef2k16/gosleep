@@ -1,0 +1,25 @@
+{
+ "name": "gosleep",
+ "description": "Enter your project description",
+ "author": {
+  "name": "Stefan",
+  "email": "stefanknilling@web.de"
+ },
+ "version": "0.1.0",
+ "binaryname": "gosleep",
+ "frontend": {
+  "dir": "frontend",
+  "install": "npm install",
+  "build": "npm run build",
+  "bridge": "src",
+  "serve": "npm run start"
+ },
+ "tags": "",
+ "WailsVersion": "",
+ "CrossCompile": false,
+ "Platform": "",
+ "Architecture": "",
+ "LdFlags": "",
+ "GoPath": "",
+ "UseFirebug": false
+}
