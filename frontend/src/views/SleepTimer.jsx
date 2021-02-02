@@ -1,8 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { TimePicker } from "@material-ui/pickers";
+import Button from '@material-ui/core/Button';
 
-
-export default function HelloWorld() {
+export default function SleepTimer() {
+    const [selectedDate, handleDateChange] = useState(new Date());
     return (
-        <div>I want to sleep now!</div>
+        <>
+            <TimePicker
+                clearable
+                ampm={false}
+                label="24 hours"
+                value={selectedDate}
+                onChange={handleDateChange}
+            />
+            <Button variant="contained" color="primary">default</Button>
+        </>
     );
 }

@@ -1,10 +1,18 @@
 import React from 'react';
 import './App.css';
 import SleepTimer from './views/SleepTimer';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from "./theme";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 function App() {
   return (
-    <SleepTimer />
+      <ThemeProvider theme={theme}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <SleepTimer />
+        </MuiPickersUtilsProvider>
+      </ThemeProvider>
   );
 }
 
