@@ -6,12 +6,22 @@ import (
 	"log"
 	"os/exec"
 	"runtime"
+	"time"
 )
 
-func startTimer() {
-	// shutdown := getShutdownFunction()
-	log.Println("I was called")
-	//time.AfterFunc(1*time.Second, func() {shutdown()})
+// startTimer shuts down the system after the given timespan in milliseconds is elapsed.
+func startTimer(milliseconds string) {
+	duration, err := time.ParseDuration(milliseconds)
+	if err != nil {
+		log.Println(err)
+	}
+	shutdown := getShutdownFunction()
+	time.AfterFunc(duration, func() {
+		_, err := shutdown()
+		if err != nil {
+			log.Println(err)
+		}
+	})
 }
 
 // getShutdownFunction returns the correct shutdown function for the used OS.
@@ -29,7 +39,7 @@ func getShutdownFunction() (shutdown func() (string, error)) {
 
 // shutdownWindows initiates an immediate shutdown on windows systems.
 func shutdownWindows() (string, error) {
-	output, err := exec.Command("shutdown", "-s", "-t 0").CombinedOutput()
+	output, err := exec.Command("shutdown", "/s").CombinedOutput()
 	return string(output), err
 }
 
@@ -53,5 +63,5 @@ func main() {
 		Colour: "#131313",
 	})
 	app.Bind(startTimer)
-	app.Run()
+	log.Fatal(app.Run())
 }
