@@ -3,54 +3,11 @@ package main
 import (
 	"github.com/leaanthony/mewn"
 	"github.com/wailsapp/wails"
+	"gosleep/backend"
 	"log"
-	"os/exec"
-	"runtime"
-	"time"
 )
 
-// startTimer shuts down the system after the given timespan in milliseconds is elapsed.
-func startTimer(milliseconds string) {
-	duration, err := time.ParseDuration(milliseconds)
-	if err != nil {
-		log.Println(err)
-	}
-	shutdown := getShutdownFunction()
-	time.AfterFunc(duration, func() {
-		_, err := shutdown()
-		if err != nil {
-			log.Println(err)
-		}
-	})
-}
-
-// getShutdownFunction returns the correct shutdown function for the used OS.
-func getShutdownFunction() (shutdown func() (string, error)) {
-	os := runtime.GOOS
-	if os == "windows" {
-		shutdown = shutdownWindows
-	} else if os == "linux" {
-		shutdown = shutdownLinux
-	} else {
-		log.Fatalf("OS %s not supported.\n", os)
-	}
-	return shutdown
-}
-
-// shutdownWindows initiates an immediate shutdown on windows systems.
-func shutdownWindows() (string, error) {
-	output, err := exec.Command("shutdown", "/s").CombinedOutput()
-	return string(output), err
-}
-
-// shutdownLinux initiates an immediate shutdown on linux systems.
-func shutdownLinux() (string, error) {
-	output, err := exec.Command("shutdown", "-h now").CombinedOutput()
-	return string(output), err
-}
-
 func main() {
-
 	js := mewn.String("./frontend/build/static/js/main.js")
 	css := mewn.String("./frontend/build/static/css/main.css")
 
@@ -62,6 +19,7 @@ func main() {
 		CSS:    css,
 		Colour: "#131313",
 	})
-	app.Bind(startTimer)
+	app.Bind(backend.StartTimer)
+	app.Bind(backend.StopTimer)
 	log.Fatal(app.Run())
 }
