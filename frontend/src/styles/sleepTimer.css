@@ -7,6 +7,10 @@
 }
 
 div.time-picker {
-    width: 100px;
+    width: 130px;
     margin-bottom: 32px;
+}
+
+button.timer-button {
+    width: 130px;
 }

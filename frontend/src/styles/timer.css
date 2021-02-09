@@ -1,0 +1,13 @@
+.timer-frame {
+    margin-top: 32px;
+    height: 100px;
+}
+
+span.timer-time {
+
+}
+
+span.timer-separator {
+    margin-left: 8px;
+    margin-right: 8px;
+}
