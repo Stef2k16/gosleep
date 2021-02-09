@@ -12,8 +12,8 @@ func main() {
 	css := mewn.String("./frontend/build/static/css/main.css")
 
 	app := wails.CreateApp(&wails.AppConfig{
-		Width:  256,
-		Height: 512,
+		Width:  300,
+		Height: 450,
 		Title:  "gosleep",
 		JS:     js,
 		CSS:    css,
