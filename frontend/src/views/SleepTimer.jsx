@@ -29,10 +29,14 @@ export default function SleepTimer() {
     }, [remainingTime]);
 
     const startTimer = async () => {
-        if (!selectedDate || isBefore(selectedDate, new Date())) {
+        if (!selectedDate) {
             return;
         }
-        const timeDifference = differenceInMilliseconds(selectedDate, new Date());
+        let timeDifference = differenceInMilliseconds(selectedDate, new Date());
+        if (isBefore(selectedDate, new Date())) {
+            const day = 24 * 60 * 60 * 1000;
+            timeDifference += day;
+        }
         const success = await window.backend.StartTimer(timeDifference + 'ms');
         setRemainingTime(timeDifference);
         if(!success) {
@@ -78,7 +82,7 @@ export default function SleepTimer() {
                     </Button>
                     :
                     <Button className="timer-button" variant="contained" color="primary" onClick={startTimer}
-                            disabled={!selectedDate || isBefore(selectedDate, new Date())}>
+                            disabled={!selectedDate}>
                         Start Timer
                     </Button>
                 }
