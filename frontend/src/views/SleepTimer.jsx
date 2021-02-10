@@ -19,7 +19,13 @@ export default function SleepTimer() {
     const [remainingTime, setRemainingTime] = useState(0);
 
     useEffect(() => {
-        remainingTime > 0 && setTimeout(() => setRemainingTime(remainingTime - 1000), 1000);
+        let timeout;
+        if (remainingTime > 0){
+            timeout = setTimeout(() => setRemainingTime(remainingTime - 1000), 1000);
+        }
+        return () => {
+            timeout && clearTimeout(timeout)
+        }
     }, [remainingTime]);
 
     const startTimer = async () => {
