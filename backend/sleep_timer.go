@@ -57,6 +57,6 @@ func shutdownWindows() (string, error) {
 
 // shutdownLinux initiates an immediate shutdown on linux systems.
 func shutdownLinux() (string, error) {
-	output, err := exec.Command("shutdown", "-h now").CombinedOutput()
+	output, err := exec.Command("shutdown", "-h", "now").CombinedOutput()
 	return string(output), err
 }
