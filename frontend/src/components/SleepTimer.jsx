@@ -5,7 +5,7 @@ import {differenceInMilliseconds, isBefore, add} from 'date-fns'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import '../styles/sleepTimer.css';
-import Timer from "../components/Timer";
+import Countdown from "./Countdown";
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -86,7 +86,7 @@ export default function SleepTimer() {
                         Start Timer
                     </Button>
                 }
-                <Timer remainingTime={remainingTime} showTimer={timerRunning}/>
+                <Countdown remainingTime={remainingTime} showTimer={timerRunning}/>
             </div>
             <Snackbar open={showSnackbar} autoHideDuration={6000} onClose={handleSnackBarClose}>
                 <Alert onClose={handleSnackBarClose} severity="error">

@@ -3,7 +3,7 @@ import {Typography} from "@material-ui/core";
 import '../styles/timer.css';
 import {intervalToDuration} from 'date-fns';
 
-export default function Timer({remainingTime, showTimer}) {
+export default function Countdown({remainingTime, showTimer}) {
 
     const duration = intervalToDuration({start: 0, end: remainingTime});
 

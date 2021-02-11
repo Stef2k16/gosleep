@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import SleepTimer from './views/SleepTimer';
+import SleepTimer from './components/SleepTimer';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from "./theme";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
